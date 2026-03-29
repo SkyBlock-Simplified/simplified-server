@@ -9,20 +9,31 @@ import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+/**
+ * Spring Boot application entry point for the Simplified Server.
+ *
+ * <p>Excludes Jackson autoconfiguration in favor of Gson via {@link SimplifiedApi#getGson()}.
+ * Server tuning is driven by {@link ServerConfig}, which supplies all default properties
+ * programmatically.</p>
+ */
 @SpringBootApplication(
     exclude = { JacksonAutoConfiguration.class }
 )
-@EnableWebMvc
 public class SimplifiedServer implements WebMvcConfigurer {
 
     @Bean
     public @NotNull Gson gson() {
         return SimplifiedApi.getGson();
+    }
+
+    @Override
+    public void addInterceptors(@NotNull InterceptorRegistry registry) {
+        registry.addInterceptor(new SecurityHeaderInterceptor());
     }
 
     @Override
@@ -33,7 +44,9 @@ public class SimplifiedServer implements WebMvcConfigurer {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SimplifiedServer.class, args);
+        SpringApplication application = new SpringApplication(SimplifiedServer.class);
+        application.setDefaultProperties(ServerConfig.optimized().toProperties());
+        application.run(args);
     }
 
 }
