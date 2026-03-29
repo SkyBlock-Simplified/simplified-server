@@ -20,12 +20,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ApiKeyConfig implements WebMvcConfigurer {
 
     @Bean
-    public @NotNull RoleHierarchyService roleHierarchyService() {
-        return new RoleHierarchyService();
+    public @NotNull ApiKeyRoleHierarchy roleHierarchyService() {
+        return new ApiKeyRoleHierarchy();
     }
 
     @Bean
-    public @NotNull ApiKeyService apiKeyService(@NotNull RoleHierarchyService roleHierarchyService) {
+    public @NotNull ApiKeyService apiKeyService(@NotNull ApiKeyRoleHierarchy roleHierarchyService) {
         return new ApiKeyService(roleHierarchyService);
     }
 

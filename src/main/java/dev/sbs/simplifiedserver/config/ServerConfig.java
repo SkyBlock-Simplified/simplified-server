@@ -1,4 +1,4 @@
-package dev.sbs.simplifiedserver;
+package dev.sbs.simplifiedserver.config;
 
 import dev.sbs.api.collection.concurrent.Concurrent;
 import dev.sbs.api.collection.concurrent.ConcurrentList;
@@ -86,6 +86,7 @@ public final class ServerConfig {
                 "application/json",
                 "application/javascript",
                 "image/svg+xml",
+                "text/html",
                 "text/json",
                 "text/javascript",
                 "text/plain"

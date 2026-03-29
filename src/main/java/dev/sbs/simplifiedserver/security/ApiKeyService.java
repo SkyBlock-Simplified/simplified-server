@@ -11,13 +11,13 @@ import java.util.Set;
  * Manages API key storage, validation, rate limiting, and permission resolution.
  *
  * <p>Currently uses hardcoded test keys. The permission check delegates to
- * {@link RoleHierarchyService} for role expansion before matching.</p>
+ * {@link ApiKeyRoleHierarchy} for role expansion before matching.</p>
  */
 @RequiredArgsConstructor
 public class ApiKeyService {
 
     private final @NotNull ConcurrentMap<String, ApiKey> apiKeys = Concurrent.newMap();
-    private final @NotNull RoleHierarchyService hierarchyService;
+    private final @NotNull ApiKeyRoleHierarchy hierarchyService;
 
     {
         apiKeys.put("dev-key-777", new ApiKey("dev-key-777",

@@ -1,70 +1,72 @@
 package dev.sbs.simplifiedserver.controller;
 
 import dev.sbs.minecraftapi.MinecraftApi;
-import dev.sbs.minecraftapi.client.mojang.exception.MojangApiException;
 import dev.sbs.minecraftapi.client.mojang.response.MojangProfile;
 import dev.sbs.minecraftapi.client.mojang.response.MojangProperties;
 import dev.sbs.minecraftapi.client.mojang.response.MojangUsername;
-import dev.sbs.minecraftapi.client.sbs.exception.SbsErrorResponse;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MissingPathVariableException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.UUID;
 
+/**
+ * Mojang API proxy endpoints under {@code /mojang/}.
+ *
+ * <p>Provides player profile lookup by username or UUID, username resolution,
+ * and skin properties. Delegates to {@link MinecraftApi#getMojangProxy()} for
+ * upstream calls.</p>
+ */
 @RestController
 @RequestMapping("/mojang")
 public class MojangController {
 
+    /**
+     * Looks up a Mojang profile by username or UUID string.
+     *
+     * <p>Attempts to parse the identifier as a {@link UUID} first; if that fails,
+     * treats it as a username.</p>
+     *
+     * @param identifier a Minecraft username or UUID string
+     * @return the Mojang profile
+     */
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/user/{username}")
-    public @NotNull MojangProfile getUser(@PathVariable String username) {
-        // Check null parameter
-        MissingPathVariableException mpvex;
-
-        NoHandlerFoundException nhfex;
-        NoResourceFoundException nrferx;
-        ResponseEntity<?> resp;
-
-        return MinecraftApi.getMojangProxy().getMojangProfile(username);
+    @GetMapping("/user/{identifier}")
+    public @NotNull MojangProfile getUser(@NotNull @PathVariable String identifier) {
+        try {
+            UUID uniqueId = UUID.fromString(identifier);
+            return MinecraftApi.getMojangProxy().getMojangProfile(uniqueId);
+        } catch (IllegalArgumentException ignored) {
+            return MinecraftApi.getMojangProxy().getMojangProfile(identifier);
+        }
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/user/{uniqueId}")
-    public @NotNull MojangProfile getUser(@PathVariable UUID uniqueId) {
-        return MinecraftApi.getMojangProxy().getMojangProfile(uniqueId);
-    }
-
+    /**
+     * Resolves a Minecraft username to its Mojang username record.
+     *
+     * @param username the Minecraft username
+     * @return the Mojang username record
+     */
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/username/{username}")
-    public @NotNull MojangUsername getUsername(@PathVariable String username) {
+    public @NotNull MojangUsername getUsername(@NotNull @PathVariable String username) {
         return MinecraftApi.getMojangProxy().getEndpoint().getPlayer(username);
     }
 
+    /**
+     * Fetches the skin properties for a player by UUID.
+     *
+     * @param uniqueId the player UUID
+     * @return the Mojang properties containing skin data
+     */
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/properties/{uniqueId}")
-    public @NotNull MojangProperties getUsername(@PathVariable UUID uniqueId) {
+    public @NotNull MojangProperties getProperties(@NotNull @PathVariable UUID uniqueId) {
         return MinecraftApi.getMojangProxy().getEndpoint().getProperties(uniqueId);
-    }
-
-    @ExceptionHandler(
-        value = MojangApiException.class,
-        produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public @NotNull ResponseEntity<SbsErrorResponse> handleMissingPathVariable(@NotNull MojangApiException mojangApiException) {
-        return ResponseEntity.status(mojangApiException.getStatus().getCode())
-            .contentType(MediaType.APPLICATION_JSON)
-            .body(mojangApiException.getResponse());
     }
 
 }

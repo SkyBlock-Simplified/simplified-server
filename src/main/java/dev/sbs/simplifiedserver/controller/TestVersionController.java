@@ -1,5 +1,6 @@
-package dev.sbs.simplifiedserver.version;
+package dev.sbs.simplifiedserver.controller;
 
+import dev.sbs.simplifiedserver.version.ApiVersion;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

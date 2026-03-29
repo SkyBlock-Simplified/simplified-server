@@ -1,5 +1,6 @@
-package dev.sbs.simplifiedserver.security;
+package dev.sbs.simplifiedserver.controller;
 
+import dev.sbs.simplifiedserver.security.ApiKeyProtected;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
