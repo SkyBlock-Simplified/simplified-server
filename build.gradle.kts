@@ -37,8 +37,6 @@ dependencies {
     // Spring
     implementation(libs.spring.boot)
     implementation(libs.spring.boot.web)
-    implementation(libs.spring.boot.security)
-    testImplementation(libs.spring.security.test)
 
     // Projects
     implementation("dev.sbs:api:0.1.0")

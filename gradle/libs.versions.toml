@@ -4,7 +4,6 @@ simplified-annotations = "1.0.4"
 junit-jupiter = "5.11.4"
 hamcrest = "2.2"
 spring-boot = "3.4.5"
-spring-security = "6.4.5"
 
 [libraries]
 lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
@@ -15,5 +14,3 @@ junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform
 hamcrest = { group = "org.hamcrest", name = "hamcrest", version.ref = "hamcrest" }
 spring-boot = { group = "org.springframework.boot", name = "spring-boot", version.ref = "spring-boot" }
 spring-boot-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
-spring-boot-security = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "spring-boot" }
-spring-security-test = { group = "org.springframework.security", name = "spring-security-test", version.ref = "spring-security" }
