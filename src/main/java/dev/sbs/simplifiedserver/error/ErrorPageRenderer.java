@@ -18,10 +18,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Pure-Java renderer for Cloudflare-style HTML error pages.
- *
- * <p>Loads CSS and HTML template resources once at class load time, then renders
+ * <p>
+ * Loads CSS and HTML template resources once at class load time, then renders
  * error pages by replacing named {@link Placeholder} tokens. All user-controlled
- * values are HTML-escaped via {@link HtmlUtils#htmlEscape(String)} to prevent XSS.</p>
+ * values are HTML-escaped via {@link HtmlUtils#htmlEscape(String)} to prevent XSS.
+ *
+ * @see <a href="https://github.com/donlon/cloudflare-error-page">Cloudflare Error Page Generator</a>
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ErrorPageRenderer {
