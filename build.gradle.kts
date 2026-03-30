@@ -35,7 +35,9 @@ dependencies {
     testImplementation(libs.junit.platform.launcher)
 
     // SpringDoc (implementation-specific, not in server-api)
-    implementation(libs.springdoc.openapi.scalar)
+    implementation(libs.springdoc.openapi.scalar) {
+        exclude(group = "org.jboss.logging", module = "jboss-logging")
+    }
 
     // Projects
     implementation("dev.sbs:server-api:0.1.0")
