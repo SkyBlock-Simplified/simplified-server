@@ -9,6 +9,7 @@ import dev.sbs.minecraftapi.client.hypixel.response.hypixel.HypixelPlayerRespons
 import dev.sbs.minecraftapi.client.hypixel.response.hypixel.HypixelPunishmentStats;
 import dev.sbs.minecraftapi.client.hypixel.response.hypixel.HypixelStatus;
 import dev.sbs.minecraftapi.client.hypixel.response.resource.ResourceGames;
+import dev.sbs.serverapi.security.ApiKeyProtected;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,6 +32,7 @@ import java.util.UUID;
  */
 @Tag(name = "Hypixel", description = "Hypixel API proxy endpoints")
 @RestController
+@ApiKeyProtected
 @RequestMapping("/hypixel")
 public class HypixelController {
 

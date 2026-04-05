@@ -7,6 +7,7 @@ import dev.sbs.minecraftapi.client.hypixel.response.resource.ResourceCollections
 import dev.sbs.minecraftapi.client.hypixel.response.resource.ResourceElection;
 import dev.sbs.minecraftapi.client.hypixel.response.resource.ResourceItems;
 import dev.sbs.minecraftapi.client.hypixel.response.resource.ResourceSkills;
+import dev.sbs.serverapi.security.ApiKeyProtected;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Tag(name = "Resources", description = "SkyBlock resource endpoints (no API key required)")
 @RestController
+@ApiKeyProtected
 @RequestMapping("/resources")
 public class ResourceController {
 

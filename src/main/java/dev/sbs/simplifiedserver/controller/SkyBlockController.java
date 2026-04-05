@@ -12,6 +12,7 @@ import dev.sbs.minecraftapi.client.hypixel.response.skyblock.SkyBlockGardenRespo
 import dev.sbs.minecraftapi.client.hypixel.response.skyblock.SkyBlockMuseumResponse;
 import dev.sbs.minecraftapi.client.hypixel.response.skyblock.SkyBlockNews;
 import dev.sbs.minecraftapi.client.hypixel.response.skyblock.SkyBlockProfiles;
+import dev.sbs.serverapi.security.ApiKeyProtected;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,6 +35,7 @@ import java.util.UUID;
  */
 @Tag(name = "SkyBlock", description = "SkyBlock API proxy endpoints")
 @RestController
+@ApiKeyProtected
 @RequestMapping("/skyblock")
 public class SkyBlockController {
 

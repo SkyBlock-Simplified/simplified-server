@@ -1,12 +1,13 @@
 package dev.sbs.simplifiedserver.controller;
 
+import dev.sbs.api.util.StringUtil;
 import dev.sbs.minecraftapi.MinecraftApi;
 import dev.sbs.minecraftapi.client.mojang.MojangProxy;
-import dev.sbs.minecraftapi.client.mojang.request.MojangEndpoint;
 import dev.sbs.minecraftapi.client.mojang.response.MojangMultiUsername;
 import dev.sbs.minecraftapi.client.mojang.response.MojangProfile;
 import dev.sbs.minecraftapi.client.mojang.response.MojangProperties;
 import dev.sbs.minecraftapi.client.mojang.response.MojangUsername;
+import dev.sbs.serverapi.security.ApiKeyProtected;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,15 +33,12 @@ import java.util.UUID;
  */
 @Tag(name = "Mojang", description = "Mojang API proxy endpoints")
 @RestController
+@ApiKeyProtected
 @RequestMapping("/mojang")
 public class MojangController {
 
     private @NotNull MojangProxy proxy() {
         return MinecraftApi.getMojangProxy();
-    }
-
-    private @NotNull MojangEndpoint endpoint() {
-        return proxy().getEndpoint();
     }
 
     /**
@@ -57,12 +55,12 @@ public class MojangController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/user/{identifier}")
     public @NotNull MojangProfile getUser(@Parameter(description = "Minecraft username or UUID") @NotNull @PathVariable String identifier) {
-        try {
+        if (StringUtil.isUUID(identifier)) {
             UUID uniqueId = UUID.fromString(identifier);
             return proxy().getMojangProfile(uniqueId);
-        } catch (IllegalArgumentException ignored) {
-            return proxy().getMojangProfile(identifier);
         }
+
+        return proxy().getMojangProfile(identifier);
     }
 
     /**
@@ -76,7 +74,7 @@ public class MojangController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/username/{username}")
     public @NotNull MojangUsername getUsername(@Parameter(description = "Case-insensitive Minecraft username") @NotNull @PathVariable String username) {
-        return endpoint().getPlayer(username);
+        return proxy().getEndpoint().getPlayer(username);
     }
 
     /**
@@ -88,8 +86,8 @@ public class MojangController {
     @Operation(summary = "Resolve UUID", description = "Fetches a player's username and profile status by unique id.")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/uuid/{uniqueId}")
-    public @NotNull MojangUsername getUniqueId(@Parameter(description = "Player UUID") @NotNull @PathVariable UUID uniqueId) {
-        return endpoint().getPlayer(uniqueId);
+    public @NotNull MojangUsername getUniqueId(@Parameter(description = "Player UUID") @NotNull @PathVariable String uniqueId) {
+        return proxy().getEndpoint().getPlayer(StringUtil.toUUID(uniqueId));
     }
 
     /**
@@ -103,7 +101,7 @@ public class MojangController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/properties/{uniqueId}")
     public @NotNull MojangProperties getProperties(@Parameter(description = "Player UUID") @NotNull @PathVariable UUID uniqueId) {
-        return endpoint().getProperties(uniqueId);
+        return proxy().getEndpoint().getProperties(uniqueId);
     }
 
     /**
@@ -119,7 +117,7 @@ public class MojangController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/bulk")
     public @NotNull MojangMultiUsername getMultipleUniqueIds(@RequestBody @NotNull Collection<String> usernames) {
-        return endpoint().getMultipleUniqueIds(usernames);
+        return proxy().getEndpoint().getMultipleUniqueIds(usernames);
     }
 
 }
