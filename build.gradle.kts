@@ -76,7 +76,12 @@ tasks {
         group = "deployment"
         dependsOn(shadowJar)
 
-        environment("DOCKER_HOST", providers.environmentVariable("DOCKER_HOST").get())
+        doFirst {
+            project.file(".env").readLines()
+                .filter { it.contains('=') && !it.startsWith('#') }
+                .forEach { environment(it.substringBefore('='), it.substringAfter('=')) }
+        }
+
         commandLine("docker", "compose", "up", "-d", "--build", "--remove-orphans")
     }
 }
