@@ -1,10 +1,9 @@
 package dev.sbs.simplifiedserver;
 
 import com.google.gson.Gson;
-import dev.sbs.api.SimplifiedApi;
-import dev.simplified.util.SystemUtil;
 import dev.sbs.minecraftapi.MinecraftApi;
 import dev.sbs.serverapi.config.ServerConfig;
+import dev.simplified.util.SystemUtil;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,8 +27,8 @@ public class SimplifiedServer {
     }
 
     public static void main(String[] args) {
-        SimplifiedApi.getKeyManager().add(SystemUtil.getEnvPair("HYPIXEL_API_KEY"));
-        SystemUtil.getEnv("INET6_NETWORK_PREFIX").ifPresent(prefix -> MinecraftApi.getMojangProxy().setInet6NetworkPrefix(prefix));
+        MinecraftApi.getKeyManager().add(SystemUtil.getEnvPair("HYPIXEL_API_KEY"));
+        SystemUtil.getEnv("INET6_NETWORK_PREFIX").ifPresent(MinecraftApi.getMojangProxy()::setInet6NetworkPrefix);
         SpringApplication application = new SpringApplication(SimplifiedServer.class);
         application.setDefaultProperties(
             ServerConfig.optimized()
