@@ -2,7 +2,7 @@ package dev.sbs.simplifiedserver;
 
 import com.google.gson.Gson;
 import dev.sbs.api.SimplifiedApi;
-import dev.sbs.api.util.SystemUtil;
+import dev.simplified.util.SystemUtil;
 import dev.sbs.minecraftapi.MinecraftApi;
 import dev.sbs.serverapi.config.ServerConfig;
 import org.jetbrains.annotations.NotNull;

@@ -1,6 +1,6 @@
 package dev.sbs.simplifiedserver.controller;
 
-import dev.sbs.api.util.StringUtil;
+import dev.simplified.util.StringUtil;
 import dev.sbs.minecraftapi.MinecraftApi;
 import dev.sbs.minecraftapi.client.mojang.MojangProxy;
 import dev.sbs.minecraftapi.client.mojang.response.MojangMultiUsername;
