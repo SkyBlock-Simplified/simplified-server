@@ -52,15 +52,12 @@ For running the server locally:
 2. **Clone dependency modules alongside** (for local development)
 
    This module depends on [server-api](https://github.com/SkyBlock-Simplified/server-api)
-   (`dev.sbs:server-api:0.1.0`), [minecraft-api](https://github.com/SkyBlock-Simplified/minecraft-api)
-   (`dev.sbs:minecraft-api:0.1.0`), and transitively on
-   [api](https://github.com/SkyBlock-Simplified/api) (`dev.sbs:api:0.1.0`).
-   Clone them alongside this repository for local development with Gradle
-   composite builds.
+   (`dev.sbs:server-api:0.1.0`) and [minecraft-api](https://github.com/SkyBlock-Simplified/minecraft-api)
+   (`dev.sbs:minecraft-api:0.1.0`). Clone them alongside this repository for
+   local development with Gradle composite builds.
 
    ```bash
    cd ..
-   git clone https://github.com/SkyBlock-Simplified/api.git
    git clone https://github.com/SkyBlock-Simplified/minecraft-api.git
    git clone https://github.com/SkyBlock-Simplified/server-api.git
    ```
