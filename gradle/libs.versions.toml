@@ -1,9 +1,9 @@
 [versions]
-lombok = "1.18.36"
+lombok = "1.18.46"
 simplified-annotations = "1.0.4"
 junit-jupiter = "5.11.4"
 hamcrest = "2.2"
-springdoc-openapi = "2.8.16"
+springdoc-openapi = "3.0.3"
 
 [libraries]
 lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
