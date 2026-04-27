@@ -1,16 +1,16 @@
 package dev.sbs.simplifiedserver.controller;
 
+import api.simplified.hypixel.HypixelContract;
+import api.simplified.hypixel.response.skyblock.SkyBlockAuctionResponse;
+import api.simplified.hypixel.response.skyblock.SkyBlockAuctions;
+import api.simplified.hypixel.response.skyblock.SkyBlockAuctionsEnded;
+import api.simplified.hypixel.response.skyblock.SkyBlockBazaar;
+import api.simplified.hypixel.response.skyblock.SkyBlockFireSaleResponse;
+import api.simplified.hypixel.response.skyblock.SkyBlockGardenResponse;
+import api.simplified.hypixel.response.skyblock.SkyBlockMuseumResponse;
+import api.simplified.hypixel.response.skyblock.SkyBlockNews;
+import api.simplified.hypixel.response.skyblock.SkyBlockProfiles;
 import dev.sbs.simplifiedserver.ServerApi;
-import dev.sbs.hypixelapi.HypixelContract;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockAuctionResponse;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockAuctions;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockAuctionsEnded;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockBazaar;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockFireSaleResponse;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockGardenResponse;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockMuseumResponse;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockNews;
-import dev.sbs.hypixelapi.response.skyblock.SkyBlockProfiles;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

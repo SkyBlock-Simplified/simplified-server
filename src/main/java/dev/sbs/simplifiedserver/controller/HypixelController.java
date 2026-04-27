@@ -1,13 +1,13 @@
 package dev.sbs.simplifiedserver.controller;
 
+import api.simplified.hypixel.HypixelContract;
+import api.simplified.hypixel.response.hypixel.HypixelCounts;
+import api.simplified.hypixel.response.hypixel.HypixelGuildResponse;
+import api.simplified.hypixel.response.hypixel.HypixelPlayerResponse;
+import api.simplified.hypixel.response.hypixel.HypixelPunishmentStats;
+import api.simplified.hypixel.response.hypixel.HypixelStatus;
+import api.simplified.hypixel.response.resource.ResourceGames;
 import dev.sbs.simplifiedserver.ServerApi;
-import dev.sbs.hypixelapi.HypixelContract;
-import dev.sbs.hypixelapi.response.hypixel.HypixelCounts;
-import dev.sbs.hypixelapi.response.hypixel.HypixelGuildResponse;
-import dev.sbs.hypixelapi.response.hypixel.HypixelPlayerResponse;
-import dev.sbs.hypixelapi.response.hypixel.HypixelPunishmentStats;
-import dev.sbs.hypixelapi.response.hypixel.HypixelStatus;
-import dev.sbs.hypixelapi.response.resource.ResourceGames;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

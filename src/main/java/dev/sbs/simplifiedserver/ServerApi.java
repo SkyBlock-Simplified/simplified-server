@@ -1,8 +1,8 @@
 package dev.sbs.simplifiedserver;
 
+import api.simplified.hypixel.HypixelContract;
+import api.simplified.hypixel.exception.HypixelApiException;
 import com.google.gson.Gson;
-import dev.sbs.hypixelapi.HypixelContract;
-import dev.sbs.hypixelapi.exception.HypixelApiException;
 import dev.sbs.mojangapi.MojangContract;
 import dev.sbs.mojangapi.exception.MojangApiException;
 import dev.sbs.mojangapi.request.MojangDomain;
