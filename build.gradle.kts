@@ -46,12 +46,12 @@ dependencies {
 
     // Split minecraft-api modules
     implementation("com.github.skyblock-simplified:skyblock-data-api:master-SNAPSHOT")
-    implementation("com.github.skyblock-simplified:mojang-api:master-SNAPSHOT")
+    implementation("com.github.simplified-api:mojang:master-SNAPSHOT")
     implementation("com.github.skyblock-simplified:sbs-api:master-SNAPSHOT")
-    implementation("com.github.skyblock-simplified:hypixel-api:master-SNAPSHOT")
+    implementation("com.github.simplified-api:hypixel:master-SNAPSHOT")
 
     // Projects
-    implementation("dev.sbs:server-api:0.1.0")
+    implementation("com.github.simplified-dev:spring-framework:master-SNAPSHOT")
 }
 
 tasks {
