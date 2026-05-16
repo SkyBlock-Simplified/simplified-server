@@ -1,7 +1,7 @@
 package dev.sbs.simplifiedserver;
 
 import com.google.gson.Gson;
-import dev.sbs.serverapi.config.ServerConfig;
+import dev.simplified.serverapi.config.ServerConfig;
 import dev.simplified.util.SystemUtil;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
